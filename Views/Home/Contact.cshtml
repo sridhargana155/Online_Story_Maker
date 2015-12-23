@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+@*<address>
+   1110 WestCott Street<br />
+    Syracuse, NY 13210<br />
+    <abbr title="Phone">Phone:</abbr>
+    315.925.9184
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:sganapat@syr.edu">sganapat@syr.edu</a><br />
+</address>*@
+
+@using System
+@using System.Linq
+@using System.Xml.Linq
+<table>
+    <tr>
+        @{
+            string filepath = HttpContext.Current.Server.MapPath("~/Content/contact.xml");
+            XElement xelement = XElement.Load(filepath);
+            IEnumerable<XElement> images = xelement.Elements();
+            //Read the entire XML
+            int i = 0;
+            string[] image = new String[images.Count()];
+            foreach (var imageXML in images)
+            {
+                image[i] = imageXML.Element("Path").Value;
+                i++;
+            }
+
+            Random r = new Random();
+            int imageNumber = r.Next(image.Length);//Max range
+        }
+        <td>
+            <figure>
+                <img src=@image[@imageNumber] style="font-weight: bold;margin:2px" height='400' width="550" border=0 />
+            </figure>
+        </td>
+    </tr>
+
+</table>

@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Online_Story_Maker_Sridhar.Models.Story_Table>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Story Page</h3>
+
+<p>
+    @if (User.IsInRole("developer"))
+    {
+        @Html.ActionLink("Create a New Story", "../Story/Create")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StorySeq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.DateandTimeCreated)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.DateandTimeModified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importantevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.speed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimerInterval)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.var1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.var2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.var3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.num1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.num2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.num3)
+        </th>
+        <th></th>*@
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StorySeq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DateandTimeCreated)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.DateandTimeModified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Importantevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.speed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimerInterval)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.var1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.var2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.var3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.num1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.num2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.num3)
+        </td>*@
+        <td>
+@if (User.IsInRole("developer"))
+{
+    @Html.ActionLink("Edit", "Edit", new { id = item.StoryId })
+}|
+@Html.ActionLink("View Collage", "StoryBlockInfo", new { id = item.StoryId }) |
+@Html.ActionLink("StoryBlock Info", "Details", new { id = item.StoryId }) |
+@Html.ActionLink("SlideShow", "SlideShow", new { id = item.StoryId }) |
+@if (User.IsInRole("developer"))
+{
+    @Html.ActionLink("ImageUpload", "Create", "Image")
+}
+@if (User.IsInRole("admin"))
+{
+    @Html.ActionLink("Delete", "Delete", new { id = item.StoryId })
+}
+        </td>
+    </tr>
+}
+
+</table>

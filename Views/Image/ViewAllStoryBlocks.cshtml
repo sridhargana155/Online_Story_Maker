@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Online_Story_Maker_Sridhar.Models.Image_Table>
+@{
+    ViewBag.Title = "ViewAllStoryBlocks";
+}
+
+<h3>ViewAllStoryBlocks</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Storydet.StoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageCaption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageSequence)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.DateofCreation)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.DateofModification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageDescription)
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Storydet.StoryName)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.ImageName)*@
+                <img src="@Url.Content("~/UploadedFiles/" + item.ImageName)" alt="images" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageCaption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageSequence)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.DateofCreation)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.DateofModification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageDescription)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ivar1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ivar2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ivar3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.inum1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.inum2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.inum3)
+                </td>*@
+            <td>
+                @if (User.IsInRole("developer"))
+                {
+                    @Html.ActionLink("Edit", "../Image/Edit", new { id = item.ImageID })
+                }
+                @Html.ActionLink("Details", "../Image/Details", new { id = item.ImageID }) |
+                @if (User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Delete", "../Image/Delete", new { id = item.ImageID })
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("Back to Story Page", "Index", "Story")
+</div>

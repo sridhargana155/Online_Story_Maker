@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+@*<h3>@ViewBag.Title.</h3>
+<p>This website is built on Asp.net technology using code first approach.</p>
+ <p>The site is further empowered with the help of javascripts and jqueries</p>*@
+@using System
+@using System.Linq
+@using System.Xml.Linq
+        @{
+            string filepath = HttpContext.Current.Server.MapPath("~/Content/Help_Page.xml");
+            XElement xelement = XElement.Load(filepath);
+            IEnumerable<XElement> images = xelement.Elements();
+            //Read the entire XML
+            int i = 0;
+            string[] image = new String[images.Count()];
+            foreach (var imageXML in images)
+            {
+                image[i] = imageXML.Element("Path").Value;
+                i++;
+            }
+
+            Random r = new Random();
+            int imageNumber = r.Next(image.Length);//Max range
+        }
+<figure>
+<img src=@image[@imageNumber] style="font-weight: bold;margin:2px" height='400' width="550" border=0 />
+</figure>
+  

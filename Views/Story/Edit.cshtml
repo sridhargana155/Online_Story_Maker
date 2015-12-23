@@ -1,0 +1,152 @@
+﻿@model Online_Story_Maker_Sridhar.Models.Story_Table
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Story_Table</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.StoryId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StoryName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StoryName)
+                @Html.ValidationMessageFor(model => model.StoryName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StorySeq, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StorySeq)
+                @Html.ValidationMessageFor(model => model.StorySeq)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AuthorName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AuthorName)
+                @Html.ValidationMessageFor(model => model.AuthorName)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.DateandTimeCreated, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateandTimeCreated)
+                @Html.ValidationMessageFor(model => model.DateandTimeCreated)
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.DateandTimeModified, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateandTimeModified)
+                @Html.ValidationMessageFor(model => model.DateandTimeModified)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem { Text = "High", Value = "High" });
+    listItems.Add(new SelectListItem { Text = "Medium", Value = "Medium" });
+    listItems.Add(new SelectListItem { Text = "Low", Value = "Low", Selected = true });
+            }
+            @Html.LabelFor(model => model.Importantevel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.importanceLevel, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownListFor(model => model.Importantevel, listItems, "-- Select Status --")
+                @Html.ValidationMessageFor(model => model.Importantevel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.speed, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.speed)
+                @Html.ValidationMessageFor(model => model.speed)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TimerInterval, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TimerInterval)
+                @Html.ValidationMessageFor(model => model.TimerInterval)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.var1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.var1)
+                @Html.ValidationMessageFor(model => model.var1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.var2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.var2)
+                @Html.ValidationMessageFor(model => model.var2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.var3, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.var3)
+                @Html.ValidationMessageFor(model => model.var3)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.num1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.num1)
+                @Html.ValidationMessageFor(model => model.num1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.num2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.num2)
+                @Html.ValidationMessageFor(model => model.num2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.num3, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.num3)
+                @Html.ValidationMessageFor(model => model.num3)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,133 @@
+﻿@model Online_Story_Maker_Sridhar.Models.Story_Table
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Story_Table</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StorySeq)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StorySeq)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorName)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.DateandTimeCreated)
+        </dt>*@
+
+        @*<dd>
+            @Html.DisplayFor(model => model.DateandTimeCreated)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateandTimeModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateandTimeModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Importantevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Importantevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.speed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.speed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimerInterval)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimerInterval)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.var1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.var1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.var2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.var2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.var3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.var3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num3)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("developer"))
+{
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StoryId })
+}
+@Html.ActionLink("Back to List", "Index")
+</p>

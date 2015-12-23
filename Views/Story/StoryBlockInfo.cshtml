@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Online_Story_Maker_Sridhar.Models.Image_Table>
+
+@{
+    ViewBag.Title = "StoryBlockInfo";
+}
+
+<h3>Collage View</h3>
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Storydet.StoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageCaption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageSequence)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateofCreation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateofModification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageDescription)
+        </th>
+        <th></th>
+    </tr>*@
+
+@foreach (var item in Model)
+{
+    <iframe src="@Url.Content("~/UploadedFiles/" + item.ImageName)" width="300" height="300"></iframe>
+    @Html.DisplayFor(modelItem => item.ImageCaption)
+}
+
+@*</tr>
+    </table>*@
+@*@foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Storydet.StoryName)
+            </td>
+            <td>
+
+                <img src="@Url.Content("~/UploadedFiles/" + item.ImageName)" alt="images" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageCaption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageSequence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateofCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateofModification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ImageID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ImageID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ImageID })
+            </td>
+        </tr>
+    }*@
+@*</table>*@
+
+@*@Html.ActionLink("Back to Story Some Page", "Index", "Story")*@
+
+<div>
+    @Html.ActionLink("Back to Story Page", "Index", "Story")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

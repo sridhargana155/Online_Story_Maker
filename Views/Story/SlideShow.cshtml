@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Online_Story_Maker_Sridhar.Models.Image_Table>
+
+@{
+    ViewBag.Title = "SlideShow";
+}
+
+<h3>Enjoy your SlideShow..!!</h3>
+
+@*code source - http://jsfiddle.net/EjZzs/15/*@
+
+<style>
+    #slider {
+        width: 720px;
+        height: 400px;
+        overflow: hidden;
+    }
+
+        #slider .slides {
+            display: block;
+            width: 6000px;
+            height: 400px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #slider .slide {
+            float: left;
+            list-style-type: none;
+            width: 720px;
+            height: 400px;
+        }
+</style>
+
+
+<script>
+    window.onload = (function () {
+        var anm;
+        var model = @Html.Raw(Json.Encode(Model));
+        anm = model[0];
+        //settings for slider
+        var width = 720;
+        var animationSpeed = anm.Storydet.speed;
+
+        var pause = anm.Storydet.TimerInterval;
+        var currentSlide = 1;
+
+        //cache DOM elements
+        var $slider = $('#slider');
+        var $slideContainer = $('.slides', $slider);
+        var $slides = $('.slide', $slider);
+
+        var interval;
+
+        function startSlider() {
+            interval = setInterval(function () {
+                $slideContainer.animate({ 'margin-left': '-=' + width }, animationSpeed, function () {
+                    if (++currentSlide === $slides.length) {
+                        currentSlide = 1;
+                        $slideContainer.css('margin-left', 0);
+                    }
+                });
+            }, pause);
+        }
+        function pauseSlider() {
+            clearInterval(interval);
+        }
+
+        $slideContainer
+            .on('mouseenter', pauseSlider)
+            .on('mouseleave', startSlider);
+
+        startSlider();
+
+
+    });
+</script>
+
+<div class="container">
+    <div class="header">
+    </div>
+    <div id="slider">
+        <ul class="slides">
+            @foreach (var item in Model)
+            {
+                <li class="slide slide1"><img src="@Url.Content("~/UploadedFiles/"+item.ImageName)" height="550" width="550" /></li>
+                @*<li class="slide slide1"><img src="@Url.Content("~/Image_List/" + item.imageName)" height="550" width="550" /></li>*@
+            }
+        </ul>
+    </div>
+</div>
+
+
+
+@*<div class="container">
+        <div class="header">
+            <h1 class="text-muted">jQuery Basic Slider</h1>
+        </div>
+        <div id="slider">
+            <ul class="slides">
+                <li class="slide slide1"><img src="@Url.Content("~/Image_List/places-01-80.jpg")" height="550" width="550" /></li>
+                <li class="slide slide1"><img src="@Url.Content("~/Image_List/places-03-80.jpg")" height="550" width="550" /></li>
+            </ul>
+        </div>
+    </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+@Html.ActionLink("Back to Story Page", "Index")
+
+
+

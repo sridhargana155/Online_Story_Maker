@@ -1,0 +1,177 @@
+﻿@model Online_Story_Maker_Sridhar.Models.Image_Table
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h3>Edit</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ImageID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageName, "Image Upload", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ImageName, new { type = "file", id = "fileUpload" })
+                @*@Html.EditorFor(model => model.ImageName)*@
+                @Html.ValidationMessageFor(model => model.ImageName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageCaption, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ImageCaption)
+                @Html.ValidationMessageFor(model => model.ImageCaption)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageSequence, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ImageSequence)
+                @Html.ValidationMessageFor(model => model.ImageSequence)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.DateofCreation, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateofCreation)
+                @Html.ValidationMessageFor(model => model.DateofCreation)
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.DateofModification, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateofModification)
+                @Html.ValidationMessageFor(model => model.DateofModification)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageDescription, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.ImageDescription)*@
+                @Html.TextAreaFor(model => model.ImageDescription, new { style = "height: 250px; width: 300px;" })
+                @Html.ValidationMessageFor(model => model.ImageDescription)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StoryId, "Story Name", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("StoryId", String.Empty)
+                @Html.ValidationMessageFor(model => model.StoryId)
+            </div>
+        </div>
+
+        @* Upload functionality starts here *@
+        @*<div class="form-group">
+            <br /><br />
+            <label for="fileUpload" />
+            Select the same filename to upload: <input id="fileUpload" type="file" />
+            <br />
+            <input id="btnUploadFile" type="button" onclick="myfunc1()" value="Upload File" />
+        </div>*@
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $('#btnUploadFile').on('click', function () {
+                    var data = new FormData();
+                    var files = $("#fileUpload").get(0).files;
+                    // Adding the uploaded file content to the form data collection
+                    if (files.length > 0) {
+                        data.append("UploadedImage", files[0]);
+                    }
+                    // Making Ajax request with the contentType = false, and procesDate = false
+                    var ajaxRequest = $.ajax({
+                        type: "POST",
+                        url: "/api/fileupload/uploadfile",
+                        contentType: false,
+                        processData: false,
+                        data: data
+                    });
+                    ajaxRequest.done(function (xhr, textStatus) {
+                        // Do other operation
+                    });
+                });
+            });
+        </script>
+        @* Upload functionality end here *@
+        <script type="text/javascript"></script>
+        <script>
+            function myfunc1() {
+                alert("File uploaded successfuly!")
+            }
+        </script>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ivar1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ivar1)
+                @Html.ValidationMessageFor(model => model.ivar1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ivar2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ivar2)
+                @Html.ValidationMessageFor(model => model.ivar2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ivar3, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ivar3)
+                @Html.ValidationMessageFor(model => model.ivar3)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.inum1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.inum1)
+                @Html.ValidationMessageFor(model => model.inum1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.inum2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.inum2)
+                @Html.ValidationMessageFor(model => model.inum2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.inum3, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.inum3)
+                @Html.ValidationMessageFor(model => model.inum3)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="btnUploadFile" type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to Story Page", "Index", "Story")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
